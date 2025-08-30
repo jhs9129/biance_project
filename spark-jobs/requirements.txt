@@ -1,0 +1,1 @@
+psycopg2-binary==2.9.9  # Postgres 접속/업서트
