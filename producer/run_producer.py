@@ -36,7 +36,8 @@ def map_binance_trade(msg: dict) -> dict:
 async def run():
     while True:
         try:
-            async with websockets.connect(WS_URL, ping_interval=20, ping_timeout=20) as ws:
+            # 20초마다 ping/pong 교환 (타임아웃 20초)
+            async with websockets.connect(WS_URL, ping_interval=20, ping_timeout=20) as ws: 
                 print(f"[producer] connected to {WS_URL}")
                 message_count = 0
                 
