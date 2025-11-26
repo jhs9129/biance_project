@@ -1,10 +1,1 @@
-.binance/
-airflow/backups/
-airflow/logs/
-airflow/dags/__pycache__/
-backups/
-producer/run_producer_v1.py
-spark-checkpoint/
-.env
-
-dashboard/.dashboard
+test_fold/
