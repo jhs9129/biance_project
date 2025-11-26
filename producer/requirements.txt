@@ -1,0 +1,3 @@
+websockets==10.4     # WebSocket 클라이언트
+kafka-python==2.0.2  # Kafka Producer 라이브러리
+ujson==5.10.0        # 빠른 JSON 직렬화
