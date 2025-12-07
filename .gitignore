@@ -1,1 +1,6 @@
 .env
+airflow/logs/
+airflow/plugins/
+backups/
+dashboard/.dashboard/
+spark-checkpoint/

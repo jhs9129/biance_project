@@ -5,10 +5,10 @@ import websockets
 from kafka import KafkaProducer
 
 # ---- 환경변수/기본값 ----
-WS_URL = "wss://stream.binance.com:9443/ws/btcusdt@trade"
-TOPIC = os.getenv("KAFKA_TOPIC")
-BOOTSTRAP = os.getenv("KAFKA_BOOTSTRAP")
-SYMBOL = "BTCUSDT"
+WS_URL = os.getenv("WS_URL") # binance ws 주소
+TOPIC = os.getenv("TOPIC")
+BOOTSTRAP = os.getenv("BOOTSTRAP")
+SYMBOL = os.getenv("SYMBOL")
 
 # ---- Producer 설정 ----
 producer = KafkaProducer(

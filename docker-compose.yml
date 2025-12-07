@@ -74,6 +74,16 @@ services:
       - SPARK_RPC_ENCRYPTION_ENABLED=no
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
+      #### agg_1m.py 환경변수 ####
+      - PG_HOST=${POSTGRES_HOST}
+      - PG_PORT=${POSTGRES_PORT}
+      - PG_DB=${POSTGRES_DB}
+      - PG_USER=${POSTGRES_USER}
+      - PG_PW=${POSTGRES_PASSWORD}
+      - KAFKA_BOOTSTRAP=${KAFKA_BOOTSTRAP}
+      - KAFKA_TOPIC=${KAFKA_TOPIC}
+      - CHECKPOINT=${CHECKPOINT}
+
     command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
     ports:
       - "7077:7077"
@@ -114,6 +124,12 @@ services:
   producer:
     image: python:3.11-slim                # 프로듀서 런타임
     # restart: always
+    environment:
+    ### 환경변수 ###
+      - BOOTSTRAP=${KAFKA_BOOTSTRAP}
+      - TOPIC=${KAFKA_TOPIC}
+      - WS_URL=wss://stream.binance.com:9443/ws/btcusdt@trade
+      - SYMBOL=BTCUSDT
     depends_on:
       - kafka
     working_dir: /app

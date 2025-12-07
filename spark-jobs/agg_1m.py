@@ -1,3 +1,5 @@
+# spark로 kafka 내 데이터들 받아와서 1분 단위로 분석
+
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import (
     from_json, col, to_timestamp, window,
@@ -24,11 +26,11 @@ CHECKPOINT = os.getenv("CHECKPOINT")
 
 
 # ---- Postgres 연결 정보 ----
-PG_HOST = os.getenv("POSTGRES_HOST")
-PG_PORT = os.getenv("POSTGRES_PORT")
-PG_DB = os.getenv("POSTGRES_DB")
-PG_USER = os.getenv("POSTGRES_USER")
-PG_PW = os.getenv("POSTGRES_PASSWORD")
+PG_HOST = os.getenv("PG_HOST")
+PG_PORT = os.getenv("PG_PORT")
+PG_DB = os.getenv("PG_DB")
+PG_USER = os.getenv("PG_USER")
+PG_PW = os.getenv("PG_PW")
 
 
 # ---- JSON 스키마: producer가 넣은 필드 구조(Dataframe을 말들기 위한 설계도라고 생각하면 됨) ----
@@ -86,7 +88,7 @@ if __name__ == "__main__":
     spark = (
         SparkSession.builder
         .appName("agg_1m")                                # 앱 이름
-        .master("local[2]")                               # 단일 컨테이너 로컬 모드(2 스레드)
+        #.master("local[2]")                               # 단일 컨테이너 로컬 모드(2 스레드)
         .getOrCreate()
     )
     spark.sparkContext.setLogLevel("WARN")                # 로그 소음 줄이기
