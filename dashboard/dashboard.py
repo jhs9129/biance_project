@@ -41,7 +41,7 @@ df_1h = pd.read_sql(query_1h, conn)
 
 df_1h["window_start_ts"] = (
     pd.to_datetime(df_1h["window_start_ts"])
-    .dt.tz_convert("Asia/Seoul")
+    .dt.tz_localize("Asia/Seoul")
     .dt.tz_localize(None)
 )
 
